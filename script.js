@@ -1,6 +1,9 @@
 $(function() {
     function startGame() {
     	document.turn = "X";
+    	if (Math.random() < 0.5) {
+    		document.turn = "0";
+    	}
     	document.winner = null;//winner variable has been created to keep track of the winner, which is currently set to nothing.
     	setMessage(document.turn + " gets to start.");
     }
