@@ -9,8 +9,12 @@ $(function() {
     }
 
     function nextMove(square) { //this function will change the inner text of a clicked square class with the value of document.turn then runs switchturn function
-    	square.innerText = document.turn; //question: why isn't this function affecting all classes tagged with "square"?
-    	switchTurn();
+    	if(square.innerText == ""){//if the innerText of square is "", then allow the following to run, or else
+    		square.innerText = document.turn; //question: why isn't this function affecting all classes tagged with "square"?
+    		switchTurn();
+    	} else {// let the user know that square has been used already
+    		setMessage("That square is already used.");
+    	}
     }
 
     function switchTurn() {
