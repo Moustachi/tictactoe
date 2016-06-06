@@ -1,11 +1,13 @@
 $(function() {
+	var turn = "";
+	var winner = null;
     function startGame() {
-    	document.turn = "X";
+    	turn = "X";
     	if (Math.random() < 0.5) {
-    		document.turn = "O";
+    		turn = "O";
     	}
-    	document.winner = null;//winner variable has been created to keep track of the winner, which is currently set to nothing.
-    	setMessage(document.turn + " gets to start.");
+    	winner = null;
+    	setMessage(turn + " gets to start.");
     }
 
     function setMessage(msg) {
@@ -13,10 +15,10 @@ $(function() {
     }
 
     function nextMove(square) {
-    	if (document.winner != null) { // of document.winner has been turned into document.turn by switchTurn function, then display the already won message.
-    		setMessage(document.winner + " already won the game.");
+    	if (winner != null) {
+    		setMessage(winner + " already won the game.");
     	} else if (square.innerText == "") {
-    		square.innerText = document.turn;
+    		square.innerText = turn;
     		switchTurn();
     	} else {
     		setMessage("That square is already used.");
@@ -24,15 +26,15 @@ $(function() {
     }
 
     function switchTurn() {
-    	if (checkForWinner(document.turn)) {
-    		setMessage("Congratualtions, " + document.turn + "! You win!");
-    		document.winner = document.turn; //if a player has been chose as the winner, change doc.winner's value to doc.turn's
-    	} else if (document.turn == "X") {
-    		document.turn = "O";
-    		setMessage("It's " + document.turn +"'s turn.");
+    	if (checkForWinner(turn)) {
+    		setMessage("Congratualtions, " + turn + "! You win!");
+    		winner = turn;
+    	} else if (turn == "X") {
+    		turn = "O";
+    		setMessage("It's " + turn +"'s turn.");
     	} else {
-    		document.turn = "X";
-    		setMessage("It's " + document.turn +"'s turn.");
+    		turn = "X";
+    		setMessage("It's " + turn +"'s turn.");
     	}
     }
 
